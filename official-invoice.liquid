@@ -81,9 +81,9 @@
                 {% assign telephone = "" %}
                 {% for field in business.custom_fields %}
                     {% case field.label %}
-                        {% when "en" %}
+                        {% when "company_name_en" %}
                             {% assign name_en = field.text %}
-                        {% when "kh" %}
+                        {% when "company_name_kh" %}
                             {% assign name_kh = field.text %}
                         {% when "bank_name" %}
                             {% assign bank_name = field.text %}
