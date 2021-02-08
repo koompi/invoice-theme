@@ -8,7 +8,7 @@ To use this template you need to follow the instruction below.
 
 - Login to manager.io
 - Settings > Themes > New Theme > Add thene name
-- Copy everything in [official-invoice.liquid](./official-invoice.liquid])
+- Copy everything in [official-invoice.liquid](https://github.com/koompi/invoice-theme/blob/master/official-invoice.liquid)
 - Paste in Theme > Create
 
 ## SETTING UP
