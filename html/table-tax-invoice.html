@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .hbs {
+                border-spacing: 2px;
+                border-collapse: separate;
+            }
+            .title {
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+            .kmos {
+                font-family: "Khmer OS";
+            }
+            .kmosm {
+                font-family: "Khmer OS Muol Light";
+            }
+            .en {
+                font-family: "Times New Roman", Times, serif;
+            }
+            .bold {
+                font-weight: bold;
+            }
+            .bolder {
+                font-weight: bolder;
+            }
+            .ruler {
+                width: 100%;
+                margin: 10px 0;
+                border-bottom: 1px solid #333333 !important;
+            }
+            .long-field {
+                width: 50%;
+            }
+            .short-field {
+                width: 300px;
+            }
+            .hbd {
+                border-bottom: 2px dotted #333333 !important;
+            }
+            .table-border {
+                border-bottom: 1px solid black !important;
+                border-top: 1px solid black !important;
+                border-collapse: collapse !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <img
+                            src="https://dev.koompi.org/images/koompi-letter-head.png"
+                            alt="koompi-logo"
+                            srcset=""
+                            style="width: auto; height: 15mm"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title kmos bold">គម្ពីរ ឯ.ក</div></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title bold en">KOOMPI CO., LTD</div></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <table class="hbs">
+                            <tr colspan="8">
+                                <td rowspan="5" style="width: 100px"></td>
+                                <td class="kmos" colspan="5">
+                                    លេខអត្តសញ្ញាណកម្ម អតប
+                                    <span class="en">(VATTIN)</span>
+                                    <span class="en bolder">K005-901901037</span>
+                                </td>
+                            </tr>
+                            <tr class="kmos">
+                                <td>អាសយដ្ឋាន៖</td>
+                                <td>ផ្ទះលេខ៖</td>
+                                <td class="hbd">#៣៥</td>
+                                <td>ផ្លូវលេខ៖</td>
+                                <td class="hbd">៦០០</td>
+                                <td>ឃុំ/សង្កាត់៖</td>
+                                <td class="hbd">បឹងកក់ទី ២</td>
+                            </tr>
+                            <tr class="en">
+                                <td>Address:</td>
+                                <td>No:</td>
+                                <td class="hbd">#35</td>
+                                <td>Street No:</td>
+                                <td class="hbd">600</td>
+                                <td>Commune/Sangkat:</td>
+                                <td class="hbd">Beung Kak 2</td>
+                            </tr>
+                            <tr class="kmos">
+                                <td>ក្រុង/ស្រុក/ខណ្ឌ៖</td>
+                                <td class="hbd">ទួលគោក</td>
+                                <td>ខេត្ត/រាជធានី៖</td>
+                                <td class="hbd">ភ្នំពេញ</td>
+                                <td>ទូរស័ព្ទលេខ៖</td>
+                                <td class="en hbd" colspan="2">069 551 651/ 096 705 6880/ 077 990 887</td>
+                            </tr>
+                            <tr class="en">
+                                <td>Town/District/Khan:</td>
+                                <td class="hbd">Tuol Kork</td>
+                                <td>Province/City:</td>
+                                <td class="hbd">Phnom Penh</td>
+                                <td>Telephone No:</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <div class="ruler"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title kmosm">វិក្កយបត្រអាករ</div></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title bold en">TAX INVOICE</div></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <table style="margin-bottom: 30px" class="hbs">
+                            <tr>
+                                <td style="width: 200px">
+                                    <span class="kmos">អតិថិជន</span><span class="en">/Customer:</span>
+                                </td>
+                                <td class="long-field hbd"></td>
+                                <td><span class="kmos">លេខរៀងវិក្កយបត្រ៖</span></td>
+                                <td class="hbd short-field"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">ឈ្មោះ</span><span class="en">/Name:</span></td>
+                                <td class="long-field hbd"></td>
+                                <td><span class="en">Invoice No</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">អាសយដ្ឋាន</span><span class="en">/Address:</span></td>
+                                <td class="long-field hbd"></td>
+                                <td><span class="kmos">កាលបរិច្ឆេទ</span><span class="en">/Date:</span></td>
+                                <td class="hbd short-field"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">អ៊ីម៉ែល</span><span class="en">/Email:</span></td>
+                                <td class="long-field hbd"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">ទូរស័ព្ទលេខ</span><span class="en">/Telephone No:</span></td>
+                                <td class="long-field hbd"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">ទូរសារ</span><span class="en">/Fax:</span></td>
+                                <td class="long-field hbd"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    {% for column in table.columns %}
+                    <td
+                        class="text-{{ column.align }} border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="font-weight: bold; padding: 5px 10px; border-bottom-width: 1px; border-top-width: 1px{% if column.nowrap %}; width: 80px{% endif %}"
+                    >
+                        {{ column.label }}
+                    </td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table.rows %}
+                <tr>
+                    {% for cell in row.cells %}
+                    <td
+                        class="text-{{table.columns[forloop.index0].align}} border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="padding: 5px 10px; {% if table.columns[forloop.index0].nowrap %}; white-space: nowrap; width: 80px{% endif %}"
+                    >
+                        {{ cell.text | newline_to_br }}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr>
+                    {% for column in table.columns %}
+                    <td
+                        class="border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="border-bottom-width: 1px"
+                    >
+                        &nbsp;
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <table>
+                            <td colspan="99">
+                                <table>
+                                    {% assign step = 0 %}
+                                    {% assign vat = 0 %}
+                                    {% assign subtotal = 0 %}
+                                    {% for total in table.totals %}
+                                    <tr style="border: 1px solid black; border-collapse: collapse">
+                                        {% if step == 0 %}
+                                        <td rowspan="0" style="width: 45%; border: none" class="en">
+                                            <p>* Bank Information for remittance of payment:</p>
+                                            <p>Bank Name: ABA Bank Cambodia</p>
+                                            <p>Bank address: #766Eo, St 128 Sangkat Teuk Laok 1, Toul Kork</p>
+                                            <p>Account Name: KOOMPI CO LTD</p>
+                                            <p>Account No : 000704302</p>
+                                        </td>
+                                        {% endif %} {% assign step = 1 %}
+                                        <td colspan="3" style="width: 45%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;">
+                                            
+                                            {% case total.label %}
+                                                {% when "Includes VAT 10%" %}
+                                                    {% assign vat = total.number %}
+                                                    <span class="kmos">អាករលើតម្លៃបន្ថែម</span><span class="en"> / (VAT 10%)</span>
+                                                {% when "Total" %}
+                                                    {% assign subtotal = total.number %}
+                                                    <span class="kmos">អនុសរុប</span><span class="en"> / Sub Total</span>
+                                                {% else %}
+                                                    {{ total.label }}
+                                            {% endcase %}
+                                            
+                                        </td>
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">{{ total.text }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <td colspan="3" style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">សរុបរួម</span><span class="en">/ Grand Total</span></td>
+                                        {% assign grand = vat|plus:subtotal %}
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">$ {{ grand }}</td>
+                                    </tr>
+                                    <tr style="background: #cccccc; font-weight: bold !important;">
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">សរុបរួមរៀល</span><span class="en"> / Grand Total in Riel</span></pre></td>
+                                        <td style="width: 10%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">អត្រា</span><span class="en"> / Rate</span></td>
+                                        <td style="width: 10%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">៛</span><span class="en"> {{ rate }}</span></td>
+                                        {% assign grandr = grand|times:rate %}
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;"><span class="kmos">៛</span><span class="en"> {{ grandr }}</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td style="height: 150px; border-bottom: 2px dotted black;">
+                                
+                                </td>
+                                <td rowspan="0"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">ហត្ថលេខ និង ឈ្មោះអ្នកធ្វើវិក្កយបត្រ</span></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="en">Received Signature & Name</span><br/><br/></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="kmos"><span class="bold">សម្គាល់៖</span> ច្បាបដើមសម្រាប់អ្នកទិញ ច្បាប់ចម្លងសម្រាប់អ្នកលក់</span></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="en"><span class="bold">Note:</span> Original Invoice for Customer, Copied Invoice for Seller</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
