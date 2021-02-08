@@ -63,13 +63,93 @@
                         />
                     </td>
                 </tr>
+                {% assign name_kh = "" %}
+                {% assign name_en = "" %}
+                {% assign bank_name = "" %}
+                {% assign bank_no = "" %}
+                {% assign vattin = "" %}
+                {% assign no_kh = "" %}
+                {% assign no_en = "" %}
+                {% assign str_kh = "" %}
+                {% assign str_en = "" %}
+                {% assign sangkat_kh = "" %}
+                {% assign sangkat_en = "" %}
+                {% assign khan_kh = "" %}
+                {% assign khan_en = "" %}
+                {% assign city_kh = "" %}
+                {% assign city_en = "" %}
+                {% assign telephone = "" %}
                 {% for field in business.custom_fields %}
+                    {% case field.label %}
+                        {% when "en" %}
+                            {% assign name_en = field.text %}
+                        {% when "kh" %}
+                            {% assign name_kh = field.text %}
+                        {% when "bank_name" %}
+                            {% assign bank_name = field.text %}
+                        {% when "bank_no" %}
+                            {% assign bank_no = field.text %}
+                        {% when "vattin" %}
+                            {% assign vattin = field.text %}
+                        {% when "no_kh" %}
+                            {% assign no_kh = field.text %}
+                        {% when "no_en" %}
+                            {% assign no_en = field.text %}
+                        {% when "str_kh" %}
+                            {% assign str_kh = field.text %}
+                        {% when "str_en" %}
+                            {% assign str_en = field.text %}
+                        {% when "sangkat_kh" %}
+                            {% assign sangkat_kh = field.text %}
+                        {% when "sangkat_en" %}
+                            {% assign sangkat_en = field.text %}
+                        {% when "khan_kh" %}
+                            {% assign khan_kh = field.text %}
+                        {% when "khan_en" %}
+                            {% assign khan_en = field.text %}
+                        {% when "city_kh" %}
+                            {% assign city_kh = field.text %}
+                        {% when "city_en" %}
+                            {% assign city_en = field.text %}
+                        {% when "telephone" %}
+                            {% assign telephone = field.text %}
+                    {% endcase %}
+                {% endfor %}
+                
+                {% assign invoice_type = "tax_invoice" %}
+                {% assign exchange_rate = 0 %}
+                {% assign telephone = "" %}
+                {% assign company_en = "" %}
+                {% assign company_kh = "" %}
+                {% assign attn = "" %}
+                {% for field in custom_fields %}
+                    {% case field.label %}
+                        {% when "attn" %}
+                            {% assign attn = field.text %}
+                        {% when "company_en" %}
+                            {% assign company_en = field.text %}
+                        {% when "company_kh" %}
+                            {% assign company_kh = field.text %}
+                        {% when "telephone" %}
+                            {% assign telephone = field.text %}
+                        {% when "exchange_rate" %}
+                            {% assign exchange_rate = field.text %}
+                        {% when "invoice_type" %}
+                            {% assign invoice_type = field.text %}
+                        {% else %}
+                    {% endcase %}
+                {% endfor %}
+
                 <tr>
                     <td colspan="99">
-                        <center><div class="title kmos bold">{{ field.text }}</div></center>
+                        <center><div class="title kmos bold">{{ name_kh }}</div></center>
                     </td>
                 </tr>
-                {% endfor %}
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title en bold">{{ name_en }}</div></center>
+                    </td>
+                </tr>
 
                 <tr>
                     <td colspan="99">
@@ -79,40 +159,40 @@
                                 <td class="kmos" colspan="5">
                                     លេខអត្តសញ្ញាណកម្ម អតប
                                     <span class="en">(VATTIN)</span>
-                                    <span class="en bolder">K005-901901037</span>
+                                    <span class="en bolder">{{ vattin }}</span>
                                 </td>
                             </tr>
                             <tr class="kmos">
                                 <td>អាសយដ្ឋាន៖</td>
                                 <td>ផ្ទះលេខ៖</td>
-                                <td class="hbd">#៣៥</td>
+                                <td class="hbd">{{ no_kh }}</td>
                                 <td>ផ្លូវលេខ៖</td>
-                                <td class="hbd">៦០០</td>
+                                <td class="hbd">{{ str_kh }}</td>
                                 <td>ឃុំ/សង្កាត់៖</td>
-                                <td class="hbd">បឹងកក់ទី ២</td>
+                                <td class="hbd">{{ sangkat_kh }}</td>
                             </tr>
                             <tr class="en">
                                 <td>Address:</td>
                                 <td>No:</td>
-                                <td class="hbd">#35</td>
+                                <td class="hbd">{{ no_en }}</td>
                                 <td>Street No:</td>
-                                <td class="hbd">600</td>
+                                <td class="hbd">{{ str_en }}</td>
                                 <td>Commune/Sangkat:</td>
-                                <td class="hbd">Beung Kak 2</td>
+                                <td class="hbd">{{ sangkat_en }}</td>
                             </tr>
                             <tr class="kmos">
                                 <td>ក្រុង/ស្រុក/ខណ្ឌ៖</td>
-                                <td class="hbd">ទួលគោក</td>
+                                <td class="hbd">{{ khan_kh }}</td>
                                 <td>ខេត្ត/រាជធានី៖</td>
-                                <td class="hbd">ភ្នំពេញ</td>
+                                <td class="hbd">{{ city_kh }}</td>
                                 <td>ទូរស័ព្ទលេខ៖</td>
-                                <td class="en hbd" colspan="2">069 551 651/ 096 705 6880/ 077 990 887</td>
+                                <td class="en hbd" colspan="2">{{ telephone }}</td>
                             </tr>
                             <tr class="en">
                                 <td>Town/District/Khan:</td>
-                                <td class="hbd">Tuol Kork</td>
+                                <td class="hbd">{{ khan_en }}</td>
                                 <td>Province/City:</td>
-                                <td class="hbd">Phnom Penh</td>
+                                <td class="hbd">{{ khan_en }}</td>
                                 <td>Telephone No:</td>
                                 <td></td>
                             </tr>
@@ -126,12 +206,29 @@
                 </tr>
                 <tr>
                     <td colspan="99">
-                        <center><div class="title kmosm">វិក្កយបត្រអាករ</div></center>
+                        <center>
+                            <div class="title kmosm">
+                                
+                                {% if invoice_type == "tax_invoice" %}
+                                    វិក្កយបត្រអាករ
+                                {% else %}
+                                    វិក្កយបត្រ
+                                {% endif %}
+                            </div>
+                        </center>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="99">
-                        <center><div class="title bold en">TAX INVOICE</div></center>
+                        <center>
+                            <div class="title bold en">
+                                {% if invoice_type == "tax_invoice" %}
+                                    TAX INVOICE
+                                {% else %}
+                                    INVOICE
+                                {% endif %}
+                            </div>
+                        </center>
                     </td>
                 </tr>
                 {% assign issued_date = "" %}
@@ -152,32 +249,19 @@
                 <tr>
                     <td>
                         <table style="margin-bottom: 30px">
-                            {% assign exchange_rate = 0 %}
-                            {% assign telephone = "" %}
-                            {% for field in custom_fields %}
-                            <tr>
-                                <td style="width: 200px !important;">
-                                {% case field.label %}
-                                    {% when "attn" %}
-                                        <span class="kmos">ជូនចំពោះ</span><span class="en">/ Attn to:</span>
-                                    {% when "company_en" %}
-                                        <span class="en">Company</span>
-                                    {% when "company_kh" %}
-                                        <span class="kmos">ក្រុមហ៊ុន</span>
-                                    {% when "telephone" %}
-                                        {% assign telephone = field.text %}
-                                        {% continue %}
-                                    {% when "exchange_rate" %}
-                                        {% assign exchange_rate = field.text %}
-                                        {% continue %}
-                                    {% else %}
-                                        
-                                {% endcase %}
-                                </td>
-                                <td class="hbd" style="width: 400px !important;">{{ field.text }}</td>
-                            </tr>
-                            {% endfor %}
                             
+                            <tr>
+                                <td style="width: 200px !important;"><span class="kmos">ជូនចំពោះ</span><span class="en">/ Attn to:</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ attn }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px !important;"><span class="kmos">ក្រុមហ៊ុន</span></td>
+                                <td class="hbd kmos" style="width: 400px !important;">{{ company_kh }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px !important;"><span class="en">Company</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ company_en }}</td>
+                            </tr>
                             <tr>
                                 <td style="width: 200px !important;"><span class="kmos">អាសយដ្ឋាន</span><span class="en">/Address:</span></td>
                                 <td class="hbd" style="width: 400px !important;">{{ recipient.address }}</td>
@@ -190,28 +274,30 @@
                                 <td style="width: 200px !important;"><span class="kmos">ទូរស័ព្ទលេខ</span><span class="en">/Telephone No:</span></td>
                                 <td class="hbd" style="width: 400px !important;">{{ telephone }}</td>
                             </tr>
+                            {% if invoice_type == "tax_invoice" %}
                             <tr>
                                 <td style="width: 200px !important;"><span class="kmos">លេខអត្តសញ្ញាណកម្ម</span><span class="en"> VAT No:</span></td>
                                 <td class="hbd" style="width: 400px !important;">{{ recipient.identifier }}</td>
                             </tr>
+                            {% endif %}
                         </table>
                     </td>
                     <td colspan="10">
                         <table>
                             <tr>
-                                <td style="width: 400px !important;"><span class="kmos">លេខរៀងវិក្កយបត្រ</span><span class="en"> Invoice No:</span></td>
+                                <td style="width: 400px !important; padding-left: 5px;"><span class="kmos">លេខរៀងវិក្កយបត្រ</span><span class="en">/Invoice No:</span></td>
                                 <td class="hbd">{{ invoice_no }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 400px !important;"><span class="kmos">កាលបរិច្ឆេទ</span><span class="en"> Date of Issue:</span></td>
+                                <td style="width: 400px !important; padding-left: 5px;"><span class="kmos">កាលបរិច្ឆេទ</span><span class="en">/Date of Issue:</span></td>
                                 <td class="hbd">{{ issued_date }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 400px !important;"><span class="kmos">ថ្ងៃផុតកំណត់</span><span class="en"> Due Date</span></td>
+                                <td style="width: 400px !important; padding-left: 5px;"><span class="kmos">ថ្ងៃផុតកំណត់</span><span class="en">/Due Date</span></td>
                                 <td class="hbd">{{ due_date }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 400px !important;"><span class="kmos">អត្រាប្តូរប្រាក់</span><span class="en"> Exchange Rate 1USD</span></td>
+                                <td style="width: 400px !important; padding-left: 5px;"><span class="kmos">អត្រាប្តូរប្រាក់</span><span class="en">/Exchange Rate 1USD</span></td>
                                 <td class="hbd">៛ {{ exchange_rate }}</td>
                             </tr>
                         </table>
@@ -264,10 +350,10 @@
                                         {% if step == 0 %}
                                         <td rowspan="0" style="width: 45%; border: none" class="en">
                                             <p>* Bank Information for remittance of payment:</p>
-                                            <p>Bank Name: ABA Bank Cambodia</p>
-                                            <p>Bank address: #766Eo, St 128 Sangkat Teuk Laok 1, Toul Kork</p>
-                                            <p>Account Name: KOOMPI CO LTD</p>
-                                            <p>Account No : 000704302</p>
+                                            <p>Bank Name: {{ bank_name }}</p>
+                                            <p>Bank address: {{ no_en }}, St {{ str_en }}, {{ sangkat_en }}, {{ khan_en }}, {{ city_en }}</p>
+                                            <p>Account Name: {{ name_en }}</p>
+                                            <p>Account No : {{ bank_no }}</p>
                                         </td>
                                         {% endif %} {% assign step = 1 %}
                                         <td colspan="3" style="width: 45%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;">
@@ -303,28 +389,32 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <table style="width: 50%;">
+                    <td colspan="10">
+                        <table style="width: 80%;">
                             <tr>
-                                <td style="height: 150px; border-bottom: 2px dotted black;">
+                                <td style="height: 180px; width: 300px; border-bottom: 2px dotted black;">
                                 
                                 </td>
-                                <td rowspan="0"></td>
+                                <td style="height: 180px; width: 200px"></td>
+                                <td style="height: 180px; width: 300px; border-bottom: 2px dotted black;"></td>
                             </tr>
                             <tr>
                                 <td><span class="kmos">ហត្ថលេខ និង ឈ្មោះអ្នកធ្វើវិក្កយបត្រ</span></td>
+                                <td></td>
+                                <td><span class="kmos">ហត្ថលេខ និង ឈ្មោះអ្នកទទួល</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="en">Receiver Signature & Name</span><br/><br/></td>
+                                <td><br/><br/></td>
+                                <td><span class="en">Issuer Signature & Name</span><br/><br/></td>
 
                             </tr>
                             <tr>
-                                <td><span class="en">Received Signature & Name</span><br/><br/></td>
+                                <td colspan="3"><span class="kmos"><span class="bold">សម្គាល់៖</span> ច្បាបដើមសម្រាប់អ្នកទិញ ច្បាប់ចម្លងសម្រាប់អ្នកលក់</span></td>
 
                             </tr>
                             <tr>
-                                <td><span class="kmos"><span class="bold">សម្គាល់៖</span> ច្បាបដើមសម្រាប់អ្នកទិញ ច្បាប់ចម្លងសម្រាប់អ្នកលក់</span></td>
-
-                            </tr>
-                            <tr>
-                                <td><span class="en"><span class="bold">Note:</span> Original Invoice for Customer, Copied Invoice for Seller</span></td>
+                                <td colspan="3"><span class="en"><span class="bold">Note:</span> Original Invoice for Customer, Copied Invoice for Seller</span></td>
                             </tr>
                         </table>
                     </td>
