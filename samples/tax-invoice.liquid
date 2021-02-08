@@ -1,164 +1,335 @@
-<table style="padding: 30px">
-    <thead>
-        <tr>
-            <td colspan="99">
-                <table style="margin-bottom: 20px">
-                    <tr>
-                        <td style="font-weight: bold; font-size: 32px">
-                            {{ title }}
-                        </td>
-                        {% if business.logo != null %}
-                        <td class="text-end">
-                            <img
-                                src="{{ business.logo }}"
-                                style="max-height: 150px; max-width: 300px"
-                            />
-                        </td>
-                        {% endif %}
-                    </tr>
-                </table>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .hbs {
+                border-spacing: 2px;
+                border-collapse: separate;
+            }
+            .title {
+                font-size: 2rem;
+                line-height: 3rem;
+            }
+            .kmos {
+                font-family: "Khmer OS";
+            }
+            .kmosm {
+                font-family: "Khmer OS Muol Light";
+            }
+            .en {
+                font-family: "Times New Roman", Times, serif;
+            }
+            .bold {
+                font-weight: bold;
+            }
+            .bolder {
+                font-weight: bolder;
+            }
+            .ruler {
+                width: 100%;
+                margin: 10px 0;
+                border-bottom: 1px solid #333333 !important;
+            }
+            .long-field {
+                width: 60%;
+            }
+            .short-field {
+                width: 300px;
+            }
+            .hbd {
+                border-bottom: 2px dotted #333333 !important;
+            }
+            .table-border {
+                border-bottom: 1px solid black !important;
+                border-top: 1px solid black !important;
+                border-collapse: collapse !important;
+            }
+        </style>
+    </head>
 
-                <table style="margin-bottom: 20px">
-                    <tr>
-                        <td>
-                            <div style="font-weight: bold">
-                                {{ recipient.name }}
-                            </div>
-                            <div>{{ recipient.address | newline_to_br }}</div>
-                            <div>{{ recipient.identifier }}</div>
-                        </td>
-                        <td class="text-end">
-                            {% for field in fields %}
-                            <div style="font-weight: bold">
-                                {{ field.label }}
-                            </div>
-                            <div style="margin-bottom: 10px">
-                                {{ field.text }}
-                            </div>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <img
+                            src="{{ business.logo }}"
+                            alt="koompi-logo"
+                            srcset=""
+                            style="width: auto; height: 15mm"
+                        />
+                    </td>
+                </tr>
+                {% for field in business.custom_fields %}
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title kmos bold">{{ field.text }}</div></center>
+                    </td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td colspan="99">
+                        <table class="hbs">
+                            <tr colspan="8">
+                                <td rowspan="5" style="width: 100px"></td>
+                                <td class="kmos" colspan="5">
+                                    លេខអត្តសញ្ញាណកម្ម អតប
+                                    <span class="en">(VATTIN)</span>
+                                    <span class="en bolder">K005-901901037</span>
+                                </td>
+                            </tr>
+                            <tr class="kmos">
+                                <td>អាសយដ្ឋាន៖</td>
+                                <td>ផ្ទះលេខ៖</td>
+                                <td class="hbd">#៣៥</td>
+                                <td>ផ្លូវលេខ៖</td>
+                                <td class="hbd">៦០០</td>
+                                <td>ឃុំ/សង្កាត់៖</td>
+                                <td class="hbd">បឹងកក់ទី ២</td>
+                            </tr>
+                            <tr class="en">
+                                <td>Address:</td>
+                                <td>No:</td>
+                                <td class="hbd">#35</td>
+                                <td>Street No:</td>
+                                <td class="hbd">600</td>
+                                <td>Commune/Sangkat:</td>
+                                <td class="hbd">Beung Kak 2</td>
+                            </tr>
+                            <tr class="kmos">
+                                <td>ក្រុង/ស្រុក/ខណ្ឌ៖</td>
+                                <td class="hbd">ទួលគោក</td>
+                                <td>ខេត្ត/រាជធានី៖</td>
+                                <td class="hbd">ភ្នំពេញ</td>
+                                <td>ទូរស័ព្ទលេខ៖</td>
+                                <td class="en hbd" colspan="2">069 551 651/ 096 705 6880/ 077 990 887</td>
+                            </tr>
+                            <tr class="en">
+                                <td>Town/District/Khan:</td>
+                                <td class="hbd">Tuol Kork</td>
+                                <td>Province/City:</td>
+                                <td class="hbd">Phnom Penh</td>
+                                <td>Telephone No:</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <div class="ruler"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title kmosm">វិក្កយបត្រអាករ</div></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <center><div class="title bold en">TAX INVOICE</div></center>
+                    </td>
+                </tr>
+                {% assign issued_date = "" %}
+                {% assign due_date = "" %}
+                {% assign invoice_no = "" %}
+                {% for field in fields %}
+                    {% if field.label == "Invoice date" %}
+                        {% assign issued_date = field.text %}
+                    {% endif %}
+                    {% if field.label == "Due date" %}
+                        {% assign due_date = field.text %}
+                    {% endif %}
+                    {% if field.label == "Invoice number" %}
+                        {% assign invoice_no = field.text %}
+                    {% endif %}         
+                {% endfor %}
+                            
+                <tr>
+                    <td>
+                        <table style="margin-bottom: 30px">
+                            {% assign exchange_rate = 0 %}
+                            {% assign telephone = "" %}
+                            {% for field in custom_fields %}
+                            <tr>
+                                <td style="width: 200px !important;">
+                                {% case field.label %}
+                                    {% when "attn" %}
+                                        <span class="kmos">ជូនចំពោះ</span><span class="en">/ Attn to:</span>
+                                    {% when "company_en" %}
+                                        <span class="en">Company</span>
+                                    {% when "company_kh" %}
+                                        <span class="kmos">ក្រុមហ៊ុន</span>
+                                    {% when "telephone" %}
+                                        {% assign telephone = field.text %}
+                                        {% continue %}
+                                    {% when "exchange_rate" %}
+                                        {% assign exchange_rate = field.text %}
+                                        {% continue %}
+                                    {% else %}
+                                        
+                                {% endcase %}
+                                </td>
+                                <td class="hbd" style="width: 400px !important;">{{ field.text }}</td>
+                            </tr>
                             {% endfor %}
-                        </td>
-                        {% if business.address != null %}
-                        <td style="width: 20px"></td>
-                        <td class="border-start" style="width: 20px"></td>
-                        <td style="width: 1px; white-space: nowrap">
-                            <div style="font-weight: bold">
-                                {{ business.name }}
-                            </div>
-                            <div>{{ business.address | newline_to_br }}</div>
-                            {% for field in business.custom_fields %}
-                            <div>{{ field.label }} {{ field.text }}</div>
-                            {% endfor %}
-                        </td>
-                        {% endif %}
-                    </tr>
-                </table>
-
-                <div
-                    style="
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-bottom: 20px;
-                    "
-                >
-                    {{ description }}
-                </div>
-            </td>
-        </tr>
-        <tr>
-            {% for column in table.columns %}
-            <td
-                class="text-{{
-                    column.align
-                }} border-start{% if forloop.last == true %} border-end{% endif %}"
-                style="font-weight: bold; padding: 5px 10px; border-bottom-width: 1px; border-top-width: 1px{% if column.nowrap %}; width: 80px{% endif %}"
-            >
-                {{ column.label }}
-            </td>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in table.rows %}
-        <tr>
-            {% for cell in row.cells %}
-            <td
-                class="text-{{
-                    table.columns[forloop.index0].align
-                }} border-start{% if forloop.last == true %} border-end{% endif %}"
-                style="padding: 5px 10px; {% if table.columns[forloop.index0].nowrap %}; white-space: nowrap; width: 80px{% endif %}"
-            >
-                {{ cell.text | newline_to_br }}
-            </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-        <tr>
-            {% for column in table.columns %}
-            <td
-                class="border-start{% if forloop.last == true %} border-end{% endif %}"
-                style="border-bottom-width: 1px"
-            >
-                &nbsp;
-            </td>
-            {% endfor %}
-        </tr>
-        {% for total in table.totals %}
-        <tr>
-            <td
-                class="text-end"
-                colspan="{{ table.columns | size | minus: 1 }}"
-                style="padding: 5px 10px{% if total.emphasis == true %}; font-weight: bold{% endif %}"
-            >
-                {{ total.label }}
-            </td>
-            <td
-                class="border-start border-end text-right"
-                style="white-space: nowrap; border-bottom-width: 1px; padding: 5px 10px{% if total.emphasis == true %}; font-weight: bold{% endif %}"
-            >
-                {{ total.text }}
-            </td>
-        </tr>
-        {% endfor %} {% for field in custom_fields %}
-        <tr>
-            <td colspan="99">
-                <div style="font-weight: bold; padding-top: 20px">
-                    {{ field.label }}
-                </div>
-                <div>{{ field.text | newline_to_br }}</div>
-            </td>
-        </tr>
-        {% endfor %}
-
-        <tr>
-            <td colspan="99">
-                {% if emphasis.text != null and emphasis.positive %}
-                <div style="text-align: center; margin-top: 40px">
-                    <span
-                        style="
-                            color: #006400;
-                            border-width: 5px;
-                            border-color: #006400;
-                            padding: 10px;
-                            font-size: 20px;
-                        "
-                        >{{ emphasis.text | upcase }}</span
+                            
+                            <tr>
+                                <td style="width: 200px !important;"><span class="kmos">អាសយដ្ឋាន</span><span class="en">/Address:</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ recipient.address }}</td>
+                            </tr>
+                            <tr>
+                                <td  style="width: 200px !important;"><span class="kmos">អ៊ីម៉ែល</span><span class="en">/Email:</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ recipient.email }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px !important;"><span class="kmos">ទូរស័ព្ទលេខ</span><span class="en">/Telephone No:</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ telephone }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px !important;"><span class="kmos">លេខអត្តសញ្ញាណកម្ម</span><span class="en"> VAT No:</span></td>
+                                <td class="hbd" style="width: 400px !important;">{{ recipient.identifier }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="10">
+                        <table>
+                            <tr>
+                                <td style="width: 400px !important;"><span class="kmos">លេខរៀងវិក្កយបត្រ</span><span class="en"> Invoice No:</span></td>
+                                <td class="hbd">{{ invoice_no }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 400px !important;"><span class="kmos">កាលបរិច្ឆេទ</span><span class="en"> Date of Issue:</span></td>
+                                <td class="hbd">{{ issued_date }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 400px !important;"><span class="kmos">ថ្ងៃផុតកំណត់</span><span class="en"> Due Date</span></td>
+                                <td class="hbd">{{ due_date }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 400px !important;"><span class="kmos">អត្រាប្តូរប្រាក់</span><span class="en"> Exchange Rate 1USD</span></td>
+                                <td class="hbd">៛ {{ exchange_rate }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    {% for column in table.columns %}
+                    <td
+                        class="text-{{ column.align }} border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="font-weight: bold; padding: 5px 10px; border-bottom-width: 1px; border-top-width: 1px{% if column.nowrap %}; width: 80px{% endif %}"
                     >
-                </div>
-                {% endif %} {% if emphasis.text != null and emphasis.negative %}
-                <div style="text-align: center; margin-top: 40px">
-                    <span
-                        style="
-                            color: #ff0000;
-                            border-width: 5px;
-                            border-color: #ff0000;
-                            padding: 10px;
-                            font-size: 20px;
-                        "
-                        >{{ emphasis.text | upcase }}</span
+                        {{ column.label }}
+                    </td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table.rows %}
+                <tr>
+                    {% for cell in row.cells %}
+                    <td
+                        class="text-{{table.columns[forloop.index0].align}} border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="padding: 5px 10px; {% if table.columns[forloop.index0].nowrap %}; white-space: nowrap; width: 80px{% endif %}"
                     >
-                </div>
-                {% endif %}
-            </td>
-        </tr>
-    </tbody>
-</table>
+                        {{ cell.text | newline_to_br }}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr>
+                    {% for column in table.columns %}
+                    <td
+                        class="border-start{% if forloop.last == true %} border-end{% endif %}"
+                        style="border-bottom-width: 1px"
+                    >
+                        &nbsp;
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td colspan="99">
+                        <table>
+                            <td colspan="99">
+                                <table>
+                                    {% assign step = 0 %}
+                                    {% assign vat = 0 %}
+                                    {% assign subtotal = 0 %}
+                                    {% for total in table.totals %}
+                                    <tr style="border: 1px solid black; border-collapse: collapse">
+                                        {% if step == 0 %}
+                                        <td rowspan="0" style="width: 45%; border: none" class="en">
+                                            <p>* Bank Information for remittance of payment:</p>
+                                            <p>Bank Name: ABA Bank Cambodia</p>
+                                            <p>Bank address: #766Eo, St 128 Sangkat Teuk Laok 1, Toul Kork</p>
+                                            <p>Account Name: KOOMPI CO LTD</p>
+                                            <p>Account No : 000704302</p>
+                                        </td>
+                                        {% endif %} {% assign step = 1 %}
+                                        <td colspan="3" style="width: 45%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;">
+                                            
+                                            {% case total.label %}
+                                                {% when "Includes VAT 10%" %}
+                                                    {% assign vat = total.number %}
+                                                    <span class="kmos">អាករលើតម្លៃបន្ថែម</span><span class="en"> / (VAT 10%)</span>
+                                                {% when "Total" %}
+                                                    {% assign subtotal = total.number %}
+                                                    <span class="kmos">អនុសរុប</span><span class="en"> / Sub Total</span>
+                                                {% else %}
+                                                    {{ total.label }}
+                                            {% endcase %}
+                                            
+                                        </td>
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">{{ total.text }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <td colspan="3" style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">សរុបរួម</span><span class="en">/ Grand Total</span></td>
+                                        {% assign grand = vat|plus:subtotal %}
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">$ {{ grand }}</td>
+                                    </tr>
+                                    <tr style="background: #cccccc; font-weight: bold !important;">
+                                        <td colspan="3" style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">សរុបរួមរៀល</span><span class="en"> / Grand Total in Riel</span></pre></td>
+                                        {% assign grandr = grand|times:exchange_rate %}
+                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;"><span class="kmos">៛</span><span class="en"> {{ grandr }}</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="width: 50%;">
+                            <tr>
+                                <td style="height: 150px; border-bottom: 2px dotted black;">
+                                
+                                </td>
+                                <td rowspan="0"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="kmos">ហត្ថលេខ និង ឈ្មោះអ្នកធ្វើវិក្កយបត្រ</span></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="en">Received Signature & Name</span><br/><br/></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="kmos"><span class="bold">សម្គាល់៖</span> ច្បាបដើមសម្រាប់អ្នកទិញ ច្បាប់ចម្លងសម្រាប់អ្នកលក់</span></td>
+
+                            </tr>
+                            <tr>
+                                <td><span class="en"><span class="bold">Note:</span> Original Invoice for Customer, Copied Invoice for Seller</span></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
