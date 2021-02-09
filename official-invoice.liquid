@@ -66,6 +66,7 @@
                 {% assign name_kh = "" %}
                 {% assign name_en = "" %}
                 {% assign bank_name = "" %}
+                {% assign bank_addr = "" %}
                 {% assign bank_no = "" %}
                 {% assign vattin = "" %}
                 {% assign no_kh = "" %}
@@ -87,6 +88,8 @@
                             {% assign name_kh = field.text %}
                         {% when "bank_name" %}
                             {% assign bank_name = field.text %}
+                        {% when "bank_addr" %}
+                            {% assign bank_addr = field.text %}
                         {% when "bank_no" %}
                             {% assign bank_no = field.text %}
                         {% when "vattin" %}
@@ -351,7 +354,7 @@
                                         <td rowspan="0" style="width: 45%; border: none" class="en">
                                             <p>* Bank Information for remittance of payment:</p>
                                             <p>Bank Name: {{ bank_name }}</p>
-                                            <p>Bank address: {{ no_en }}, St {{ str_en }}, {{ sangkat_en }}, {{ khan_en }}, {{ city_en }}</p>
+                                            <p>Bank address: {{ bank_addr }}</p>
                                             <p>Account Name: {{ name_en }}</p>
                                             <p>Account No : {{ bank_no }}</p>
                                         </td>
