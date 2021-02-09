@@ -18,6 +18,7 @@ There some extra setups need to be done in order to comply with the theme requir
 ### Custom Fields
 
 - **Business Details**
+  - New Custom Field > bank_addr > Show custom field on printed documents > Create
   - New Custom Field > bank_name > Show custom field on printed documents > Create
   - New Custom Field > bank_no > Show custom field on printed documents > Create
   - New Custom Field > city_en > Show custom field on printed documents > Create
