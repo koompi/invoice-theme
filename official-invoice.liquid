@@ -66,7 +66,6 @@
                 {% assign name_kh = "" %}
                 {% assign name_en = "" %}
                 {% assign bank_name = "" %}
-                {% assign bank_addr = "" %}
                 {% assign bank_no = "" %}
                 {% assign vattin = "" %}
                 {% assign no_kh = "" %}
@@ -79,7 +78,7 @@
                 {% assign khan_en = "" %}
                 {% assign city_kh = "" %}
                 {% assign city_en = "" %}
-                {% assign telephone = "" %}
+                {% assign businuess_telephone = "" %}
                 {% for field in business.custom_fields %}
                     {% case field.label %}
                         {% when "company_name_en" %}
@@ -88,8 +87,6 @@
                             {% assign name_kh = field.text %}
                         {% when "bank_name" %}
                             {% assign bank_name = field.text %}
-                        {% when "bank_addr" %}
-                            {% assign bank_addr = field.text %}
                         {% when "bank_no" %}
                             {% assign bank_no = field.text %}
                         {% when "vattin" %}
@@ -115,7 +112,7 @@
                         {% when "city_en" %}
                             {% assign city_en = field.text %}
                         {% when "telephone" %}
-                            {% assign telephone = field.text %}
+                            {% assign businuess_telephone = field.text %}
                     {% endcase %}
                 {% endfor %}
                 
@@ -189,7 +186,7 @@
                                 <td>ខេត្ត/រាជធានី៖</td>
                                 <td class="hbd">{{ city_kh }}</td>
                                 <td>ទូរស័ព្ទលេខ៖</td>
-                                <td class="en hbd" colspan="2">{{ telephone }}</td>
+                                <td class="en hbd" colspan="2">{{ businuess_telephone }}</td>
                             </tr>
                             <tr class="en">
                                 <td>Town/District/Khan:</td>
@@ -354,7 +351,7 @@
                                         <td rowspan="0" style="width: 45%; border: none" class="en">
                                             <p>* Bank Information for remittance of payment:</p>
                                             <p>Bank Name: {{ bank_name }}</p>
-                                            <p>Bank address: {{ bank_addr }}</p>
+                                            <p>Bank address: {{ no_en }}, St {{ str_en }}, {{ sangkat_en }}, {{ khan_en }}, {{ city_en }}</p>
                                             <p>Account Name: {{ name_en }}</p>
                                             <p>Account No : {{ bank_no }}</p>
                                         </td>
