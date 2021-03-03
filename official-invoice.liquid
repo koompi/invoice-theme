@@ -345,37 +345,53 @@
                                     {% assign step = 0 %}
                                     {% assign vat = 0 %}
                                     {% assign subtotal = 0 %}
+                                    {% assign grand = 0 %}
                                     {% for total in table.totals %}
-                                    <tr style="border: 1px solid black; border-collapse: collapse">
-                                        {% if step == 0 %}
-                                        <td rowspan="0" style="width: 45%; border: none" class="en">
-                                            <p>* Bank Information for remittance of payment:</p>
-                                            <p>Bank Name: {{ bank_name }}</p>
-                                            <p>Bank address: {{ no_en }}, St {{ str_en }}, {{ sangkat_en }}, {{ khan_en }}, {{ city_en }}</p>
-                                            <p>Account Name: {{ name_en }}</p>
-                                            <p>Account No : {{ bank_no }}</p>
-                                        </td>
-                                        {% endif %} {% assign step = 1 %}
-                                        <td colspan="3" style="width: 45%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;">
-                                            
-                                            {% case total.label %}
-                                                {% when "Includes VAT 10%" %}
-                                                    {% assign vat = total.number %}
-                                                    <span class="kmos">អាករលើតម្លៃបន្ថែម</span><span class="en"> / (VAT 10%)</span>
-                                                {% when "Total" %}
-                                                    {% assign subtotal = total.number %}
-                                                    <span class="kmos">អនុសរុប</span><span class="en"> / Sub Total</span>
-                                                {% else %}
-                                                    {{ total.label }}
-                                            {% endcase %}
-                                            
-                                        </td>
-                                        <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">{{ total.text }}</td>
+                                        {% if total.label == "Total" %}
+                                            {% assign grand = total.number %}
+                                            {% continue %}
+
+                                        {% else %}
+                                        <tr style="border: 1px solid black; border-collapse: collapse">
+                                            {% if step == 0 %}
+                                            <td rowspan="0" style="width: 45%; border: none" class="en">
+                                                <p>* Bank Information for remittance of payment:</p>
+                                                <p>Bank Name: {{ bank_name }}</p>
+                                                <p>Bank address: {{ no_en }}, St {{ str_en }}, {{ sangkat_en }}, {{ khan_en }}, {{ city_en }}</p>
+                                                <p>Account Name: {{ name_en }}</p>
+                                                <p>Account No : {{ bank_no }}</p>
+                                            </td>
+                                            {% endif %} {% assign step = 1 %}
+                                            <td colspan="3" style="width: 45%; border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;">
+                                                
+                                                {% case total.label %}
+                                                    {% when "VAT 10%" %}
+                                                        {% assign grand = total.number %}
+                                                        {% assign vat = total.number| divided_by: 1.1 %}
+                                                        <span class="kmos">អាករលើតម្លៃបន្ថែម</span><span class="en"> / (VAT 10%)</span>
+                                                    
+                                                    {% else %}
+                                                        {{ total.label }}
+                                                {% endcase %}
+                                                
+                                            </td>
+                                            {% if total.label == "VAT 10%" %}   
+                                            <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">
+                                                {% assign arr = vat | split: "." %}
+                                                {% assign f = arr[0] %}
+                                                {% assign t = arr[1] | downcase %}
+                                                {{ f }}.{{ t | slice: 0, 2 }}
+                                            </td>
+                                            {% else %}
+                                            <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">{{ total.text }}</td>
+
+                                            {% endif %}                                     
+                                        {% endif %}
                                     </tr>
                                     {% endfor %}
                                     <tr>
                                         <td colspan="3" style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle;"><span class="kmos">សរុបរួម</span><span class="en">/ Grand Total</span></td>
-                                        {% assign grand = vat|plus:subtotal %}
+                                        
                                         <td style="border-bottom: 2px solid black; border-collapse: collapse; vertical-align: middle; text-align: right; padding-right: 10px;">$ {{ grand }}</td>
                                     </tr>
                                     <tr style="background: #cccccc; font-weight: bold !important;">
